@@ -10,7 +10,7 @@ namespace PM2E17813
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new Views.PagePrincipal());
         }
 
         protected override void OnStart()
