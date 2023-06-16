@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PM2E17813.Models
 {
-    class Sitios
+     public class Sitios
     {
         [PrimaryKey,AutoIncrement]
         public int Id {  get; set; }
@@ -13,6 +13,8 @@ namespace PM2E17813.Models
         public string Latitud { get; set; }
 
         public string Longitud { get; set;}
+
+        public string Descripcion { get; set; }
 
         public Byte[] Foto { get; set; }
 

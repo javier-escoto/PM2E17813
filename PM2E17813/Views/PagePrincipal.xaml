@@ -34,7 +34,7 @@
             <Entry x:Name="description" Placeholder="Descripcion corta" MaxLength="30" TextColor="Green" Margin="5" Keyboard="Text"/>
 
             <Button Text="Guardar" CornerRadius="20" x:Name="add" HorizontalOptions="Start" Clicked="add_Clicked" />
-            <Button Text="   Salir de App     " CornerRadius="20" HorizontalOptions="End" Clicked="Button_Clicked" />
+            <Button Text="   Salir de App     " CornerRadius="20" HorizontalOptions="Center" Clicked="Button_Clicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

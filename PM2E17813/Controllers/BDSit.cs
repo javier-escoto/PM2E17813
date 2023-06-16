@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 using SQLite;
-using PM2E17813.Models;
 using System.Threading.Tasks;
+using PM2E17813.Models;
+
 
 namespace PM2E17813.Controllers
 {
-    class BDSit
+    public class BDSit
     {
         readonly SQLiteAsyncConnection _connection;
         public BDSit() { }
 
-        public BDSit(string dbpath) 
+        public BDSit(string dbpath)
         {
             _connection = new SQLiteAsyncConnection(dbpath);
 
@@ -23,7 +24,7 @@ namespace PM2E17813.Controllers
 
         //crete
 
-        public Task<int> Addemple(Sitios sitios)
+        public Task<int> Addsitio(Sitios sitios)
         {
             if (sitios.Id == 0)
             {
@@ -54,9 +55,6 @@ namespace PM2E17813.Controllers
         {
             return _connection.DeleteAsync(sitios);
         }
-
-
-
 
     }
 }

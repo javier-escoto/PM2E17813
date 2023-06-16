@@ -8,6 +8,9 @@ using Plugin.Media;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
+using PM2E17813.Models;
+using System.IO;
+using Plugin.Media.Abstractions;
 
 namespace PM2E17813.Views
 {
@@ -15,10 +18,46 @@ namespace PM2E17813.Views
     public partial class PagePrincipal : ContentPage
     {
         Plugin.Media.Abstractions.MediaFile photo = null;
+
+
         public PagePrincipal()
         {
             InitializeComponent();
         }
+
+        public string Getimagen64()
+        {
+            if(photo != null) 
+            {
+                using(MemoryStream memory = new MemoryStream())
+                {
+                    Stream stream =photo.GetStream();
+                    stream.CopyTo(memory);
+                    byte[] fotobyte = memory.ToArray();
+
+                    string Base64 = Convert.ToBase64String(fotobyte);
+
+                    return Base64;
+                }
+            }
+           return null; 
+        }
+
+        public byte[] GetimagenBytes()
+        {
+            if (photo != null)
+            {
+                using (MemoryStream memory = new MemoryStream())
+                {
+                    Stream stream = photo.GetStream();
+                    stream.CopyTo(memory);
+                    byte[] fotobyte = memory.ToArray();
+                    return fotobyte;
+                }
+            }
+            return null;
+        }
+
 
         private async void btnfoto_Clicked(object sender, EventArgs e)
         {
@@ -80,8 +119,26 @@ namespace PM2E17813.Views
         }
 
 
-        private void add_Clicked(object sender, EventArgs e)
+        private async void add_Clicked(object sender, EventArgs e)
         {
+            var sit = new Models.Sitios
+            {
+                Latitud = longitud.Text,
+                Longitud = latitud.Text,
+                Descripcion = description.Text,
+                Foto = GetimagenBytes()
+
+            };
+
+           if (await App.Instancia.Addsitio(sit) > 0)
+            {
+                await DisplayAlert("Aviso", "ingreso con exito", "OK");
+            }
+            else
+            {
+                await DisplayAlert("Aviso", "error ", "OK");
+            }
+
 
         }
     }
